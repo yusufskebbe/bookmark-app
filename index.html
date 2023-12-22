@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmark</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js" defer></script>
+</head>
+
+<body>
+
+  <!-- Open Model -->
+  <h1 id="show-model">Add Bookmark</h1>
+
+  <!--Bookmarks-->
+  <div class="container" id="bookmarks-container">
+
+    <div class="item">
+      <i class="fas fa-times" id="delete-bookmark"></i>
+      <div class="name">
+        <img src="https://www.google.com/favicon.ico" alt="">
+        <a href="www.google.com" target="_blank">Google </a>
+      </div>
+    </div>
+    <div class="item">
+      <i class="fas fa-times" id="delete-bookmark"></i>
+      <div class="name">
+        <img src="https://www.google.com/favicon.ico" alt="">
+        <a href="www.google.com" target="_blank">Google </a>
+      </div>
+    </div>
+    <div class="item">
+      <i class="fas fa-times" id="delete-bookmark"></i>
+      <div class="name">
+        <img src="https://www.google.com/favicon.ico" alt="">
+        <a href="www.google.com" target="_blank">Google </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-container show-modal" id="modal">
+    <div class="modal">
+      <i class="fas fa-times close-icon" id="close-modal"></i>
+      <div class="modal-header">
+        <h3>Add bookmark</h3>
+      </div>
+      <div class="modal-content">
+        <form action="" id="bookmark-form">
+          <div class="form-group">
+            <label for="website-name" class="form-label">Website Name</label>
+            <input type="text" class="form-input" id="website-name">
+          </div>
+          <div class="form-group">
+            <label for="website-url" class="form-label">Website URL</label>
+            <input type="text" class="form-input" id="website-url">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
