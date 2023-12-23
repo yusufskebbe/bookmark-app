@@ -6,6 +6,11 @@ const websiteNameEl = document.getElementById('website-name')
 const websiteUrlEl = document.getElementById('website-url')
 const bookmarksContainer = document.getElementById('bookmarks-container')
 
+
+// array of bookmarks
+
+let bookmarks = [];
+
 // Show Modal 
 function showModal() {
 
@@ -46,6 +51,28 @@ function validate(nameValue, urlValue) {
   return true
 
 }
+// fetch from local storage
+
+function fetchBookmarks() {
+  // Get bookmarks from storage if available
+
+  if (localStorage.getItem('bookmarks')) {
+    bookmarks = JSON.parse(localStorage.getItem('bookmarks'))
+  } else {
+    // Create bookmarks in local storage
+    bookmarks = [
+      {
+        name: 'Yusuf Kebbe',
+        url: 'https://skyturkiye.net'
+      },
+    ];
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
+  }
+
+  console.log(bookmarks);
+
+}
+
 
 
 // Handle Data 
@@ -61,8 +88,19 @@ function storeBookmark(e) {
   if (!validate(nameValue, urlValue)) {
     return false
   }
+  const bookmark = {
+    name: nameValue,
+    url: urlValue
+  }
+
+  bookmarks.push(bookmark)
+  localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
+  fetchBookmarks()
+  bookmarkForm.reset();
+  websiteNameEl.focus()
 }
 
 // event listener 
 
 bookmarkForm.addEventListener('submit', storeBookmark)
+fetchBookmarks()
