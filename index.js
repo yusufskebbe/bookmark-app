@@ -5,7 +5,7 @@ const bookmarkForm = document.getElementById('bookmark-form')
 const websiteNameEl = document.getElementById('website-name')
 const websiteUrlEl = document.getElementById('website-url')
 const bookmarksContainer = document.getElementById('bookmarks-container')
-
+const buttonModal = document.getElementById('btn')
 
 // array of bookmarks
 
@@ -51,6 +51,69 @@ function validate(nameValue, urlValue) {
   return true
 
 }
+
+// Build Bookmarks DOM
+
+function deletebookmark(url) {
+  bookmarks.forEach((bookmark, i) => {
+    if (bookmark.url === url) {
+      bookmarks.splice(i, 1)
+    }
+  })
+  // Update localstorage
+  localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
+  fetchBookmarks();
+}
+
+
+
+function buildBookmarks() {
+
+
+  bookmarksContainer.textContent = ""
+
+  bookmarks.forEach((bookmark) => {
+    const { name, url } = bookmark;
+    //item
+    const item = document.createElement('div')
+    item.classList.add('item')
+    //Close icon
+    const closeIcon = document.createElement('i')
+    closeIcon.classList.add('fas', 'fa-times')
+
+
+    closeIcon.setAttribute('onclick', `deletebookmark('${url}')`)
+
+    //favicon / Link Container
+    const linkInfo = document.createElement('div')
+    linkInfo.classList.add('name')
+
+    // Favicon 
+    const favIcon = document.createElement('img')
+    favIcon.setAttribute('src', `https://s2.googleusercontent.com/s2/favicons?domain=${url}`)
+    favIcon.setAttribute('alt', "Favicon")
+
+    //link
+    const link = document.createElement('a')
+    link.setAttribute('href', `${url}`)
+
+    link.setAttribute('target', '_blank')
+
+    link.textContent = name
+
+    // Append to bookmark container
+
+    linkInfo.append(favIcon, link)
+    item.append(closeIcon, linkInfo)
+    bookmarksContainer.appendChild(item)
+
+  })
+}
+
+
+
+
+
 // fetch from local storage
 
 function fetchBookmarks() {
@@ -69,7 +132,7 @@ function fetchBookmarks() {
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
   }
 
-  console.log(bookmarks);
+  buildBookmarks()
 
 }
 
@@ -97,8 +160,9 @@ function storeBookmark(e) {
   localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
   fetchBookmarks()
   bookmarkForm.reset();
-  websiteNameEl.focus()
+  modal.classList.remove('show-modal')
 }
+
 
 // event listener 
 

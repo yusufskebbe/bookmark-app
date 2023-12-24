@@ -11,7 +11,7 @@ html{
 
 body{
   margin: 0;
-  background-color: burlywood;
+  background-color: rgb(177, 135, 222);
 }
 
 h1{
@@ -96,11 +96,13 @@ a:hover,a:active{
   bottom: 0;
 }
 
+
 .show-modal{
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 
 .modal{
   background: white;
